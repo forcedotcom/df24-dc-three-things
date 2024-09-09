@@ -1,0 +1,50 @@
+{
+  "packageDirectories": [
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "force-app",
+      "default": true,
+      "package": "exttestingtemplate",
+      "versionDescription": ""
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "data-app",
+      "default": false,
+      "package": "dc250Test",
+      "versionDescription": ""
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "data-crm",
+      "default": false,
+      "package": "mvcrmdatastream",
+      "versionDescription": ""
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "tmp",
+      "default": false,
+      "package": "mvcrmsobject",
+      "versionDescription": ""
+    }
+  ],
+  "name": "20240819_df24",
+  "namespace": "mvpbo3",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "61.0",
+  "packageAliases": {
+    "exttestingtemplate": "0HoHs000000fzdkKAA",
+    "featureX": "0HoHs000000fzdzKAA",
+    "dc250Test": "0HoHs000000fze4KAA",
+    "dc250Test@0.1.0-1": "04tHs000000mAJCIA2",
+    "mvcrmdatastream": "0HoHs000000fze9KAA",
+    "mvcrmdatastream@0.1.0-1": "04tHs000000mANeIAM",
+    "mvcrmsobject": "0HoHs000000fzeEKAQ",
+    "mvcrmsobject@0.1.0-1": "04tHs000000mANjIAM"
+  }
+}
