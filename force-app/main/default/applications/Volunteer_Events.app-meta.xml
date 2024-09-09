@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#FD9A61</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>An app to help create, organize, and track participation in volunteer events</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Volunteer Events</label>
+    <navType>Standard</navType>
+    <tabs>Volunteer_Event__c</tabs>
+    <tabs>Volunteer_Event_Participant__c</tabs>
+    <tabs>standard-Contact</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Volunteer_Events_UtilityBar</utilityBar>
+</CustomApplication>
