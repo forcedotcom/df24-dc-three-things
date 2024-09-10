@@ -54,9 +54,9 @@ Update the Data Cloud Salesforce Connector permission set. Grant View All at the
 
 ### Renamespace Repo Contents
 
-`npm run renamespace`
+To use this locally with your own namespace, you must renamespace the entire project! Running the following command will prompt you for the old namespace `mvpbo3` and you can replace it with one of your choosing. A dry run mode is available if you want to preview the list of files which will have contents or filenames changed. Just remember, you can always revert with git.
 
-The following files should be marked as changed in git.
+`npm run renamespace`
 
 ### Deploy App
 
