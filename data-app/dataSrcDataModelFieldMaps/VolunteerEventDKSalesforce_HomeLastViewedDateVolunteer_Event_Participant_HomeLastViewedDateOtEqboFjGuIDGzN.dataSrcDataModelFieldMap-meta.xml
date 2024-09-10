@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSrcDataModelFieldMap xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterApplied>false</filterApplied>
+    <masterLabel>VolunteerEventDKSalesforce_HomeLastViewedDateVolunteer_Event_Participant_HomeLastViewedDateOtEqboFjGuIDGzN</masterLabel>
+    <sourceField>mvpbo3__mvpbo3_Volunteer_Event_Participant_Home1.mvpbo3__LastViewedDate__c</sourceField>
+    <targetField>mvpbo3__Volunteer_Event_Participant_Home__dlm.mvpbo3__LastViewedDate__c</targetField>
+    <templateVersion>1</templateVersion>
+    <versionNumber>1.0</versionNumber>
+</DataSrcDataModelFieldMap>

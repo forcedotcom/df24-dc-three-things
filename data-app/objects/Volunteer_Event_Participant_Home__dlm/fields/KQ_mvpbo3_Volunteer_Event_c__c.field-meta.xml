@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KQ_mvpbo3_Volunteer_Event_c__c</fullName>
+    <label>Key Qualifier Volunteer Event</label>
+    <length>60</length>
+    <mktDataModelFieldAttributes>
+        <definitionCreationType>System</definitionCreationType>
+        <isDynamicLookup>false</isDynamicLookup>
+        <labelOverride>Key Qualifier Volunteer Event</labelOverride>
+        <masterLabel>Key Qualifier Volunteer Event</masterLabel>
+        <refAttrDeveloperName>KQ_mvpbo3_Volunteer_Event_c</refAttrDeveloperName>
+        <usageTag>KeyQualifier</usageTag>
+    </mktDataModelFieldAttributes>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

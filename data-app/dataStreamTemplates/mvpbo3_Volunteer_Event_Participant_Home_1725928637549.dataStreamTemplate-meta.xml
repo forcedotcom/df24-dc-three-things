@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStreamTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataSourceBundleDefinition>VolunteerEventBundle</dataSourceBundleDefinition>
+    <dataSourceObject>mvpbo3_Volunteer_Event_Participant_Home1</dataSourceObject>
+    <masterLabel>mvpbo3__Volunteer_Event_Participant_Home</masterLabel>
+    <objectCategory>Salesforce_SFDCReferenceModel_0_93.Engagement</objectCategory>
+    <refreshFrequency>BATCH</refreshFrequency>
+    <refreshMode>UPSERT</refreshMode>
+    <sourceObjectName>mvpbo3__mvpbo3_Volunteer_Event_Participant_Home</sourceObjectName>
+    <streamType>INGEST</streamType>
+    <templateVersion>1</templateVersion>
+</DataStreamTemplate>

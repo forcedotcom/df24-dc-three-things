@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectDependency xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataPackageKitDef>VolunteerEventDK</dataPackageKitDef>
+    <developerName>SalesforceDotCom_Home1</developerName>
+    <masterLabel>Salesforce Connector my company Home</masterLabel>
+    <sourceObject>mvpbo3_Volunteer_Event_Participant_Home_1725928637549</sourceObject>
+    <sourceObjectType>DataStreamTemplate</sourceObjectType>
+    <targetObject>SalesforceDotCom_Home</targetObject>
+</DataKitObjectDependency>

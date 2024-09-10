@@ -68,6 +68,12 @@ Update the Data Cloud Salesforce Connector permission set. Grant View All at the
 
 `sf apex run -f scripts/apex/updateDCConnectorPerms.apex`
 
+Install Sales Cloud Data Bundle
+
+- Data Cloud Setup > Salesforce CRM > Sales Cloud
+- Click Drop Down Arrow, Click Install
+- Install for Admins Only
+
 ### Deploy Namespaced Data Kit
 
 ## Resources

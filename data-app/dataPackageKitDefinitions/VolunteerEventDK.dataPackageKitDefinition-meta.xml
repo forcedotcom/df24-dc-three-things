@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPackageKitDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataKitType>NONE</dataKitType>
+    <description>A Data Kit containing Volunteer Event mappings</description>
+    <developerName>VolunteerEventDK</developerName>
+    <isDeployed>false</isDeployed>
+    <isEnabled>false</isEnabled>
+    <masterLabel>VolunteerEventDK</masterLabel>
+    <versionNumber>2.0</versionNumber>
+</DataPackageKitDefinition>
