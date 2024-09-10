@@ -7,10 +7,8 @@ export default class VeNewRegistrants extends LightningElement {
   errors;
 
   async connectedCallback() {
-    console.log('record id: ' + this.recordId);
     this.results = await getParticipantsByRecordId({ recordId: this.recordId });
     this.errors = this.results.errors;
-    console.log(this.results);
   }
   
 }
