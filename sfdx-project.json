@@ -1,20 +1,56 @@
 {
   "packageDirectories": [
     {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
       "path": "force-app",
-      "default": true
+      "default": true,
+      "package": "df24ThreeThings",
+      "versionDescription": ""
     },
     {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
       "path": "data-app",
-      "default": false
+      "default": false,
+      "package": "df24ThreeThingsDC",
+      "versionDescription": "",
+      "dependencies": [
+        {
+          "package": "04t5Y0000015oSB"
+        }
+      ]
     },
     {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
       "path": "data-app-ext",
-      "default": false
+      "default": false,
+      "package": "df24ThreeThingsDCExt",
+      "versionDescription": "",
+      "dependencies": [
+        {
+          "package": "df24ThreeThings@0.1.0-1"
+        },
+        {
+          "package": "04t5Y0000015oSB"
+        },
+        {
+          "package": "df24ThreeThingsDC@0.1.0-1"
+        }
+      ]
     }
   ],
   "name": "df24ThreeThings",
   "namespace": "mvpbo3",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "62.0"
+  "sourceApiVersion": "62.0",
+  "packageAliases": {
+    "df24ThreeThings": "0HoHs000000fzeOKAQ",
+    "df24ThreeThings@0.1.0-1": "04tHs000000mAndIAE",
+    "df24ThreeThingsDC": "0HoHs000000fzeTKAQ",
+    "df24ThreeThingsDC@0.1.0-1": "04tHs000000mAniIAE",
+    "df24ThreeThingsDCExt": "0HoHs000000fzeYKAQ",
+    "df24ThreeThingsDCExt@0.1.0-1": "04tHs000000mAo7IAE"
+  }
 }
