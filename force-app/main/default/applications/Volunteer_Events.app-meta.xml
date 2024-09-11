@@ -17,5 +17,4 @@
     <tabs>Volunteer_Event_Participant__c</tabs>
     <tabs>standard-Contact</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Volunteer_Events_UtilityBar</utilityBar>
 </CustomApplication>
