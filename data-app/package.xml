@@ -46,5 +46,9 @@
     <members>*</members>
     <name>DataKitObjectTemplate</name>
   </types>
+  <types>
+    <members>*</members>
+    <name>FieldSrcTrgtRelationship</name>
+  </types>
   <version>62.0</version>
 </Package>
