@@ -1,0 +1,23 @@
+[
+  {
+    "sobject": "Contact",
+    "saveRefs": true,
+    "resolveRefs": false,
+    "files": [
+      "Contact1.json",
+      "Contact2.json",
+      "Contact3.json",
+      "Contact4.json"
+    ]
+  },
+  {
+    "sobject": "mvpbo3__Volunteer_Event__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": [
+      "Volunteer_Event__c1.json",
+      "Volunteer_Event__c2.json",
+      "Volunteer_Event__c3.json"
+    ]
+  }
+]

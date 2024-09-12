@@ -11,6 +11,8 @@ This repo compliments my Dreamforce 2024 session, Three Things About Extending D
       - [Install Data Cloud Package](#install-data-cloud-package)
       - [Install Data Cloud Extension](#install-data-cloud-extension)
       - [Import Data](#import-data)
+      - [Deploy Data Kit](#deploy-data-kit)
+      - [Add Data Cloud LWC to Record Page](#add-data-cloud-lwc-to-record-page)
   - [Create Your own Second Generation Managed Package with Data Cloud](#create-your-own-second-generation-managed-package-with-data-cloud)
     - [2GP Prerequisites](#2gp-prerequisites)
     - [Metadata Deployment Steps](#metadata-deployment-steps)
@@ -42,6 +44,7 @@ The repo is comprised of three parts:
 ## Demo Prerequisites
 
 - Org containing Data Cloud
+- Salesforce CLI
 
 ### Deploy Volunteer Events App
 
@@ -77,7 +80,50 @@ or
 
 #### Import Data
 
+The next steps use the Salesforce CLI to import data. Set your install org as the default target org in config.
 
+`sf config set target-org={ALIAS}`
+
+Import Contacts and Volunteer Event records into the org.
+
+`sf data import tree -p data/Contact-Volunteer_Event__c-plan.json`
+
+Create many to many association between Contact and Event Volunteer objects.
+
+`npm run addParticipants`
+
+If you ever need to start from scratch with the data, run `npm run deleteVolunteerData`. This will delete all Contact, Volunteer Event, and Volunteer Event Participant records.
+
+#### Deploy Data Kit
+
+The contents of the Data Kit will now be deployed into Data Streams, Data Lake Objects, and Data Model Objects.
+
+- Open your org
+- Go to Data Cloud App > Data Stream > New
+- Pick Connected Sources, Salesforce CRM, Next
+- Pick VolunteerEventBundle, Next
+- Keep default values, Next
+- Deploy
+
+Once the Data Streams are deployed, trigger a refresh of the data to consume the rows you inserted into CRM in the prior step.
+
+- From Data Streams tab, click `mvpbo3__Volunteer_Event_Participant_Home`
+- Click "Refresh Now" button
+- Go back to Data Streams tab, click `mvpbo3__Volunteer_Event_Home`
+- Click "Refresh Now" button
+
+While the data gets ingested, go to Data Model and see the two new Data Model objects that have been deployed.
+
+#### Add Data Cloud LWC to Record Page
+
+The last step is to place the LWC from the `df24ThreeThingsDCExt` package onto the Volunteer Event Participant flexipage.
+
+- Go to App Picker > Volunteer Events
+- Click Volunteer Event tab > click on any Volunteer Event record
+- Click Setup > Edit Page
+- Pick the veNewRegistrants component from the Components tab and drag it onto the flexipage.
+- Save, Activate the page and assign as org default for desktop and phone. Click Next then Save
+- The component pulls in data from the Volunteer Event Participant DMO and displays it via LWC on your record page.
 
 ## Create Your own Second Generation Managed Package with Data Cloud
 
@@ -159,5 +205,7 @@ Install Sales Cloud Data Bundle
 `sf package version create -f config/project-scratch-def.json --installation-key-bypass -w 100 -p df24ThreeThingsDCExt`
 
 ### Package Deployment
+
+Use CLI-based instructions in [Deploy Volunteer Events App](#deploy-volunteer-events-app)
 
 ## Resources
