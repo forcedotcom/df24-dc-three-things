@@ -2,46 +2,55 @@
 
 This repo compliments my Dreamforce 2024 session, Three Things About Extending Data Cloud with Data Kits and aims to provide a hands on example for folks looking to see deployed Data Kits in action or to build their first second generation managed package with Data Kits.
 
+## Contents
+
 - [Dreamforce '24 - Three Things About Extending Data Cloud with Data Kits](#dreamforce-24---three-things-about-extending-data-cloud-with-data-kits)
-  - [Two ways to use this repo](#two-ways-to-use-this-repo)
-  - [Installation \& Demo Instructions](#installation--demo-instructions)
-  - [Demo Prerequisites](#demo-prerequisites)
+  - [Contents](#contents)
+  - [Introduction](#introduction)
+    - [Two ways to use this repo](#two-ways-to-use-this-repo)
+  - [Demo](#demo)
+    - [Demo Prerequisites](#demo-prerequisites)
     - [Deploy Volunteer Events App](#deploy-volunteer-events-app)
       - [Install Base App](#install-base-app)
       - [Install Data Cloud Package](#install-data-cloud-package)
       - [Install Data Cloud Extension](#install-data-cloud-extension)
-      - [Import Data](#import-data)
-      - [Deploy Data Kit](#deploy-data-kit)
-      - [Add Data Cloud LWC to Record Page](#add-data-cloud-lwc-to-record-page)
+    - [Import Data](#import-data)
+    - [Deploy Data Kit \& Ingest Data](#deploy-data-kit--ingest-data)
+    - [Add Data Cloud LWC to Record Page](#add-data-cloud-lwc-to-record-page)
   - [Create Your own Second Generation Managed Package with Data Cloud](#create-your-own-second-generation-managed-package-with-data-cloud)
     - [2GP Prerequisites](#2gp-prerequisites)
-    - [Metadata Deployment Steps](#metadata-deployment-steps)
-      - [Clone, Install Dependencies, Set Config](#clone-install-dependencies-set-config)
+    - [Setup](#setup)
       - [Renamespace Repo Contents](#renamespace-repo-contents)
       - [Create Scratch Org](#create-scratch-org)
-      - [Deploy App](#deploy-app)
-      - [Deploy Namespaced Data Kit](#deploy-namespaced-data-kit)
+    - [Deploy App](#deploy-app)
+      - [Deploy Base App](#deploy-base-app)
+      - [Update Data Cloud Salesforce Connector Perms](#update-data-cloud-salesforce-connector-perms)
+      - [Deploy Data Cloud Metadata in the form of a Data Kit](#deploy-data-cloud-metadata-in-the-form-of-a-data-kit)
+      - [Deploy Data Cloud Extension Package](#deploy-data-cloud-extension-package)
     - [Create Packages](#create-packages)
       - [Base App (force-app)](#base-app-force-app)
       - [Data Cloud App (data-app)](#data-cloud-app-data-app)
       - [Data Cloud App Extension (data-app-ext)](#data-cloud-app-extension-data-app-ext)
     - [Package Deployment](#package-deployment)
   - [Resources](#resources)
+  - [Requesting Data Cloud Scratch Org Access](#requesting-data-cloud-scratch-org-access)
+
+## Introduction
 
 The repo is comprised of three parts:
 
 1. Base Salesforce Platform app (`force-app`)
 2. Data Cloud Data Kit to consume platform app data (`data-app`)
-3. Data Cloud Extension package containing LWC's that consume Data Cloud Metadata (`data-app-ext`)
+3. Data Cloud Extension package containing LWC's that consume Data Cloud data (`data-app-ext`)
 
-## Two ways to use this repo
+### Two ways to use this repo
 
-1. Install and Demo - Deploy the packages in sequence into a Data Cloud-enabled org and observe functionality.
-2. Renamespace and Create Package - Build your first 2GP managed package with Data Cloud
+1. [Demo](#demo) - Deploy the packages in sequence into a Data Cloud-enabled org and observe functionality.
+2. [Create Your own Second Generation Managed Package with Data Cloud](#create-your-own-second-generation-managed-package-with-data-cloud) - Build your first 2GP managed package with Data Cloud using this repo as a starting point
 
-## Installation & Demo Instructions
+## Demo
 
-## Demo Prerequisites
+### Demo Prerequisites
 
 - Org containing Data Cloud
 - Salesforce CLI
@@ -78,7 +87,7 @@ or
 
 `sf package install -p df24ThreeThingsDCExt@0.1.0-1 -w 10 -o {ALIAS}`
 
-#### Import Data
+### Import Data
 
 The next steps use the Salesforce CLI to import data. Set your install org as the default target org in config.
 
@@ -94,7 +103,7 @@ Create many to many association between Contact and Event Volunteer objects.
 
 If you ever need to start from scratch with the data, run `npm run deleteVolunteerData`. This will delete all Contact, Volunteer Event, and Volunteer Event Participant records.
 
-#### Deploy Data Kit
+### Deploy Data Kit & Ingest Data
 
 The contents of the Data Kit will now be deployed into Data Streams, Data Lake Objects, and Data Model Objects.
 
@@ -114,7 +123,7 @@ Once the Data Streams are deployed, trigger a refresh of the data to consume the
 
 While the data gets ingested, go to Data Model and see the two new Data Model objects that have been deployed.
 
-#### Add Data Cloud LWC to Record Page
+### Add Data Cloud LWC to Record Page
 
 The last step is to place the LWC from the `df24ThreeThingsDCExt` package onto the Volunteer Event Participant flexipage.
 
@@ -131,11 +140,13 @@ Before getting into packaging, we will first install the app into a scratch org 
 
 ### 2GP Prerequisites
 
-- Data Cloud for Scratch Orgs enabed DevHub
+- Salesforce CLI
+- Data Cloud for Scratch Orgs enabed DevHub. Instructions to request this feature are at [Requesting Data Cloud Scratch Org Access](#requesting-data-cloud-scratch-org-access).
+- A namespace org associated to your DevHub
 
-### Metadata Deployment Steps
+### Setup
 
-#### Clone, Install Dependencies, Set Config
+Clone, install dependencies, and set config
 
 `git clone git@github.com:forcedotcom/df24-dc-three-things.git`
 
@@ -163,14 +174,17 @@ Create the customer org.
 
 `sf org create scratch -a df24ThreeThingsCustomer --no-namespace -f config/project-scratch-def.json -w 10 -y 30`
 
+### Deploy App
 
-#### Deploy App
+#### Deploy Base App
 
-Assign Volunteer Event Admin permission set
+Deploy the base app into your `df24ThreeThings` scratch org.
 
-`sf org assign permset -n Volunteer_Event_Admin`
+`sf project deploy start -w 10 -d force-app`
 
-Update the Data Cloud Salesforce Connector permission set. Grant View All at the object level and Read access to all fields.
+#### Update Data Cloud Salesforce Connector Perms
+
+Update the Data Cloud Salesforce Connector permission set. The following script grants View All at the object level and Read access to all fields contained within the base app.
 
 `sf apex run -f scripts/apex/updateDCConnectorPerms.apex`
 
@@ -180,9 +194,15 @@ Install Sales Cloud Data Bundle
 - Click Drop Down Arrow, Click Install
 - Install for Admins Only
 
-#### Deploy Namespaced Data Kit
+#### Deploy Data Cloud Metadata in the form of a Data Kit
 
 `sf project deploy start -w 10 -d data-app`
+
+#### Deploy Data Cloud Extension Package
+
+`sf project deploy start -w 10 -d data-app-ext`
+
+With the app deployed, you can optionally import and ingest data by following the steps listed in [Deploy Data Kit \& Ingest Data](#deploy-data-kit--ingest-data). Once complete, continue by creating the packages.
 
 ### Create Packages
 
@@ -209,3 +229,25 @@ Install Sales Cloud Data Bundle
 Use CLI-based instructions in [Deploy Volunteer Events App](#deploy-volunteer-events-app)
 
 ## Resources
+
+- [Workflow for Data Cloud Second-Generation Managed Packages](https://developer.salesforce.com/docs/platform/data-cloud-dev/guide/data-cloud-2gp-workflow.html)
+- [Partner Community - Data Cloud for ISVs](https://partners.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F94V000000g2wj)
+
+## Requesting Data Cloud Scratch Org Access
+
+**Note:** This is a partner-only feature.
+
+To have Scratch orgs enabled with Data Cloud, please submit a case to have the feature enabled in your DevHub org (Typically your Partner Business Org). Please note, Data Cloud licenses will not appear in your PBO, instead, you will be able to create scratch orgs with Data Cloud enabled.
+
+> **Case Details**
+>
+> _Product_: Partner Programs & Benefits
+>
+> _Topic_: License Request - Prod Org
+>
+> _Subject_: “Enable Data Cloud for Scratch orgs in dev hub”
+>
+> _Body_: “Please enable Data Cloud Scratch Org permissions on my Partner Business Org, OrgId: XXX.”
+
+
+Once submitted, permissions will be granted to your org within 3-5 business days.
