@@ -10,6 +10,7 @@ This repo compliments my Dreamforce 2024 session, Three Things About Extending D
     - [Two ways to use this repo](#two-ways-to-use-this-repo)
   - [Demo](#demo)
     - [Demo Prerequisites](#demo-prerequisites)
+    - [Clone repo and Install Dependencies](#clone-repo-and-install-dependencies)
     - [Deploy Volunteer Events App](#deploy-volunteer-events-app)
       - [Install Base App](#install-base-app)
       - [Install Data Cloud Package](#install-data-cloud-package)
@@ -55,6 +56,14 @@ The repo is comprised of three parts:
 - Org containing Data Cloud
 - Salesforce CLI
 
+### Clone repo and Install Dependencies
+
+`git clone git@github.com:forcedotcom/df24-dc-three-things.git`
+
+`cd df24-dc-three-things`
+
+`npm i`
+
 ### Deploy Volunteer Events App
 
 #### Install Base App
@@ -63,7 +72,7 @@ The repo is comprised of three parts:
 
 or
 
-`sf package install -p df24ThreeThings@0.1.0-1 -w 10 -o {ALIAS}`
+`sf package install -p 04tHs000000mAndIAE -w 10 -o {ALIAS}`
 
 #### Install Data Cloud Package
 
@@ -77,7 +86,7 @@ Install package
 
 or
 
-`sf package install -p df24ThreeThingsDC@0.1.0-1 -w 10 -o {ALIAS}`
+`sf package install -p 04tHs000000mAniIAE -w 10 -o {ALIAS}`
 
 #### Install Data Cloud Extension
 
@@ -85,7 +94,7 @@ or
 
 or
 
-`sf package install -p df24ThreeThingsDCExt@0.1.0-1 -w 10 -o {ALIAS}`
+`sf package install -p 04tHs000000mAo7IAE -w 10 -o {ALIAS}`
 
 ### Import Data
 
