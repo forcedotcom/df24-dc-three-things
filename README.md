@@ -34,7 +34,7 @@ This repo compliments my Dreamforce 2024 session, Three Things About Extending D
       - [Data Cloud App Extension (data-app-ext)](#data-cloud-app-extension-data-app-ext)
     - [Package Deployment](#package-deployment)
   - [Resources](#resources)
-  - [Requesting Data Cloud Scratch Org Access](#requesting-data-cloud-scratch-org-access)
+    - [Requesting Data Cloud Scratch Org Access](#requesting-data-cloud-scratch-org-access)
   - [FAQ](#faq)
 
 ## Introduction
@@ -256,9 +256,11 @@ Use CLI-based instructions in [Deploy Volunteer Events App](#deploy-volunteer-ev
 ## Resources
 
 - [Workflow for Data Cloud Second-Generation Managed Packages](https://developer.salesforce.com/docs/platform/data-cloud-dev/guide/data-cloud-2gp-workflow.html)
+- [Data Cloud Extensibility Readiness Matrix](https://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_isv_readiness_data.htm)
+- [Create Dependencies Between Second-Generation Managed Packages](https://developer.salesforce.com/docs/atlas.en-us.pkg2_dev.meta/pkg2_dev/sfdx_dev_dev2gp_create_dependencies.htm)
 - [Partner Community - Data Cloud for ISVs](https://partners.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F94V000000g2wj)
 
-## Requesting Data Cloud Scratch Org Access
+### Requesting Data Cloud Scratch Org Access
 
 **Note:** This is a partner-only feature.
 
@@ -273,7 +275,6 @@ To have Scratch orgs enabled with Data Cloud, please submit a case to have the f
 > _Subject_: “Enable Data Cloud for Scratch orgs in dev hub”
 >
 > _Body_: “Please enable Data Cloud Scratch Org permissions on my Partner Business Org, OrgId: XXX.”
-
 
 Once submitted, permissions will be granted to your org within 3-5 business days.
 
