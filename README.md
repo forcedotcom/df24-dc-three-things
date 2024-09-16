@@ -25,7 +25,7 @@ This repo compliments my Dreamforce 2024 session, Three Things About Extending D
       - [Create Scratch Org](#create-scratch-org)
     - [Deploy App](#deploy-app)
       - [Deploy Base App](#deploy-base-app)
-      - [Update Data Cloud Salesforce Connector Perms](#update-data-cloud-salesforce-connector-perms)
+      - [Update System Admin \& Data Cloud Salesforce Connector Perms](#update-system-admin--data-cloud-salesforce-connector-perms)
       - [Deploy Data Cloud Metadata in the form of a Data Kit](#deploy-data-cloud-metadata-in-the-form-of-a-data-kit)
       - [Deploy Data Cloud Extension Package](#deploy-data-cloud-extension-package)
     - [Create Packages](#create-packages)
@@ -35,6 +35,7 @@ This repo compliments my Dreamforce 2024 session, Three Things About Extending D
     - [Package Deployment](#package-deployment)
   - [Resources](#resources)
   - [Requesting Data Cloud Scratch Org Access](#requesting-data-cloud-scratch-org-access)
+  - [FAQ](#faq)
 
 ## Introduction
 
@@ -187,15 +188,28 @@ Create the customer org.
 
 #### Deploy Base App
 
-Deploy the base app into your `df24ThreeThings` scratch org.
+Deploy the base app into your `df24ThreeThings` scratch org. Data Cloud is actively being provisioned on the org which may delay the install of `force-app` files.
 
 `sf project deploy start -w 10 -d force-app`
 
-#### Update Data Cloud Salesforce Connector Perms
+#### Update System Admin & Data Cloud Salesforce Connector Perms
 
-Update the Data Cloud Salesforce Connector permission set. The following script grants View All at the object level and Read access to all fields contained within the base app.
+Update the System Admin profile and Data Cloud Salesforce Connector permission set. The following script grants View All at the object level and Read access to all fields contained within the base app.
 
 `sf apex run -f scripts/apex/updateDCConnectorPerms.apex`
+
+Grant App Visibility to System Admin profile
+
+- Setup > Profiles > System Admin > Edit
+- Check Visibile checkbox for Volunteer Events custom app
+- Save
+
+Grant Object Permissions for System Admin profile
+
+- Setup > Profiles > System Admin
+- Grant View All/ Modify All to `{NAMESPACE}__Volunteer_Event__c` & `{NAMESPACE}__Volunteer_Event_Participant__c`
+- Grant Edit permissions to all fields
+- Save
 
 Install Sales Cloud Data Bundle
 
@@ -211,9 +225,11 @@ Install Sales Cloud Data Bundle
 
 `sf project deploy start -w 10 -d data-app-ext`
 
-With the app deployed, you can optionally import and ingest data by following the steps listed in [Deploy Data Kit \& Ingest Data](#deploy-data-kit--ingest-data). Once complete, continue by creating the packages.
+With the app deployed, you can optionally import and ingest data by following the steps listed in [Import Data](#import-data) and the subsequent [Deploy Data Kit \& Ingest Data](#deploy-data-kit--ingest-data) section. Once complete, continue by creating the packages.
 
 ### Create Packages
+
+The repo contains `packageAliases` within `sfdx-project.json` which may interfere with the creation of your packages. Delete all entries in `packageAliases` before creating packages from scratch.
 
 #### Base App (force-app)
 
@@ -260,3 +276,27 @@ To have Scratch orgs enabled with Data Cloud, please submit a case to have the f
 
 
 Once submitted, permissions will be granted to your org within 3-5 business days.
+
+## FAQ
+
+I tried creating a scratch org but I got error code `VR-0003`.
+
+- Your devHub org is already on the release preview and you can remove `"release": "preview"` from `config/project-scratch-def.json`. Reference [forcedotcom/cli/#1022](https://github.com/forcedotcom/cli/issues/1022)
+
+When deploying my renamespaced `data-app` folder, it failed and reported the following error `Error Volunteer_Event_Participant_Home__dlm.rel_1725930000724_end__c Value too long for field: MasterLabel maximum length is:40`
+
+- Open `data-app/objects/Volunteer_Event_Participaant__c/fields/rel_1725930000724_end__c.field-meta.xml`. Shorten the `<label>` and `<relationshipLabel>` to 40 character or less.
+
+```diff
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+     <fullName>rel_1725930000724_end__c</fullName>
+     <deleteConstraint>SetNull</deleteConstraint>
+-    <label>mvpbo3_Volunteer_Event_Participant_H_rel</label>
++    <label>mvoriginalNS_Vol_Event_Participant_H_rel</label>
+     <referenceTo>Volunteer_Event_c_Home__dlm</referenceTo>
+-    <relationshipLabel>mvpbo3_Volunteer_Event_Participant_H_rel</relationshipLabel>
++    <relationshipLabel>mvoriginalNS_Vol_Event_Participant_H_rel</relationshipLabel>
+     <relationshipName>rel_1725930000724_end</relationshipName>
+     <required>false</required>
+     <type>Lookup</type>
+```

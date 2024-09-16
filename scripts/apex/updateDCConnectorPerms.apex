@@ -1,4 +1,4 @@
-List<String> sObjectTypeNames = new List<String>{'mvpbo3__Volunteer_Event__c', 'mvpbo3__Volunteer_Event_Participant__C'};
+List<String> sObjectTypeNames = new List<String>{'mvpbo3__Volunteer_Event__c', 'mvpbo3__Volunteer_Event_Participant__c'};
 
 // Query the Data Cloud Salesforce Connector, api name changes between Spring and Summer release
 PermissionSet permSet = [SELECT Id FROM PermissionSet WHERE Name = 'sfdc_a360_sfcrm_data_extract' or Name = 'sfdc_c360a_sfdctrust_permSet' LIMIT 1];
@@ -8,7 +8,7 @@ List<FieldPermissions> fieldPermsList = new List<FieldPermissions>();
 
 for (String sObjectTypeName : sObjectTypeNames) {
 
-  // Create a new ObjectPermissions object
+  // Create a new ObjectPermissions object for DC Connector Perm
   ObjectPermissions objPerm = new ObjectPermissions();
 
   // Set the necessary fields on the ObjectPermissions object
